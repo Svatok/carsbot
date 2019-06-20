@@ -11,8 +11,12 @@ gem 'rack-cors'
 gem 'rails'
 gem 'tzinfo-data'
 
-# Trailblazer bundle
+# Dry-rb bundle
+gem 'dry-initializer'
+gem 'dry-types'
 gem 'dry-validation'
+
+# Trailblazer bundle
 gem 'trailblazer-rails'
 
 # API documentation generator

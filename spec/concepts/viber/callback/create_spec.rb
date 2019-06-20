@@ -8,14 +8,14 @@ RSpec.describe Viber::Callback::Operation::Create do
       {
         event: 'wrong_type',
         timestamp: nil,
-        message_token: {}
+        message_token: ['test']
       }
     end
 
     let(:errors) do
       {
         event: ['must be one of: subscribed'],
-        message_token: ['must be filled'],
+        message_token: ['must be a string'],
         timestamp: ['must be filled']
       }
     end
@@ -24,7 +24,7 @@ RSpec.describe Viber::Callback::Operation::Create do
       expect { subject }.to not_change(Viber::Callback, :count)
         .and not_change(Viber::User, :count)
       expect(subject).to be_failure
-      expect(subject[:'dry_contract.result'].errors.to_h).to eq errors
+      expect(subject[:dry_contract].validation.errors.to_h).to eq errors
     end
   end
 

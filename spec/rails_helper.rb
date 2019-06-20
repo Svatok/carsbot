@@ -19,6 +19,7 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'rspec/rails'
 require 'spec_helper'
+require 'support/helpers'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -29,6 +30,7 @@ RSpec.configure do |config|
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryBot::Syntax::Methods
+  config.include Helpers
 
   config.use_transactional_fixtures = true
 

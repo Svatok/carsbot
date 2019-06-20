@@ -6,14 +6,12 @@ class Viber::User::Operation::Create < Trailblazer::Operation
   step Lib::Macro::DryContract::Sync(save: true)
   step :handle_callback!
 
-  def model!(ctx, account:, **)
-    ctx[:model] = account.users.new
+  def model!(ctx, callback:, **)
+    ctx[:model] = callback.account.users.new
   end
 
   def prepare_data!(ctx, params:, **)
-    return unless params[:user]
-
-    ctx[:params] = params[:user].merge(external_id: params[:user][:id])
+    ctx[:params] = params[:user] if params[:user]
   end
 
   def handle_callback!(_ctx, callback:, **)
