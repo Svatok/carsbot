@@ -28,9 +28,7 @@ class Viber::Callback::Operation::Create < Trailblazer::Operation
   end
 
   def handle_callback!(ctx, callback_handler:, params:, **)
-    ctx[:'handler.result'] = callback_handler.call(
-      params: params, callback: ctx[:model], account: ctx[:account]
-    )
+    ctx[:'handler.result'] = callback_handler.call(params: params, callback: ctx[:model])
     ctx[:'handler.result'].success?
   end
 end

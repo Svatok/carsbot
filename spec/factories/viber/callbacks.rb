@@ -1,8 +1,8 @@
 FactoryBot.define do
-  factory :callback, class: Viber::Account do
+  factory :viber_callback, class: Viber::Callback do
     account { nil }
     event { 1 }
-    timestamp { DateTime.zone.now }
+    timestamp { Time.zone.now }
     message_token { FFaker.numerify('##########') }
     data { nil }
   end
