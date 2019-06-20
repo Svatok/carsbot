@@ -12,9 +12,7 @@ gem 'rails'
 gem 'tzinfo-data'
 
 # Trailblazer bundle
-gem 'dry-types'
-gem 'dry-validation', '0.11.1'
-gem 'reform-rails'
+gem 'dry-validation'
 gem 'trailblazer-rails'
 
 # API documentation generator
@@ -30,6 +28,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
 end
 
 group :development do
