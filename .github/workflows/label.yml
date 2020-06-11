@@ -7,7 +7,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions-ecosystem/action-add-labels@v1
-      if: github.event.state == 'CHANGES_REQUESTED'
       with:
         repo-token: "${{ secrets.GITHUBACTION }}"
         labels: wontfix
