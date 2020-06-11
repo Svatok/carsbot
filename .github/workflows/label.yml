@@ -10,5 +10,5 @@ jobs:
     - uses: actions-ecosystem/action-add-labels@v1
       if: github.event.review.state == 'changes_requested'
       with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        github_token: "${{ secrets.GITHUB_TOKEN }}"
         labels: bug
