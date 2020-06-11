@@ -13,7 +13,7 @@ jobs:
         github_token: "${{ secrets.GITHUB_TOKEN }}"
         labels: bug
     - uses: actions-ecosystem/action-add-labels@v1
-      if: github.event.review.state == 'changes_requested'
+      if: github.event.review.state == 'approved'
       with:
         github_token: "${{ secrets.GITHUB_TOKEN }}"
         labels: ok
