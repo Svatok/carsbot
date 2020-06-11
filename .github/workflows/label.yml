@@ -5,10 +5,10 @@ jobs:
   add_labels:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "${{ github.review.state }}"
+    - run: echo "${{ github.event.review.state }}"
     - uses: actions/checkout@v2
     - uses: actions-ecosystem/action-add-labels@v1
-      if: github.review.state == 'changes_requested'
+      if: github.event.review.state == 'changes_requested'
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         labels: bug
