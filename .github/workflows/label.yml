@@ -8,5 +8,5 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions-ecosystem/action-add-labels@v1
       with:
-        github_token: efcd9291b936d3fcd280f96849a9a575aa2e4f59
+        github_token: "${{ secrets.GITHUBACTION }}"
         labels: wontfix
