@@ -19,7 +19,7 @@ jobs:
       id: find_issue
       uses: atlassian/gajira-find-issue-key@master
       with:
-        from: commits
+        from: branch
 
     - name: Transition issue
       uses: atlassian/gajira-transition@master
