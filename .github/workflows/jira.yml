@@ -1,3 +1,4 @@
+name: Transition jira issue
 on:
   pull_request:
     types: [labeled]
@@ -18,4 +19,4 @@ jobs:
       uses: atlassian/gajira-transition@master
       with:
         issue: "FR-2444"
-        transition: "In progress"
+        transition: "In Progress"
