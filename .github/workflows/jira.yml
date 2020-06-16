@@ -19,4 +19,4 @@ jobs:
       uses: atlassian/gajira-transition@master
       with:
         issue: "FR-2444"
-        transition: "In Progress"
+        transition: "In Progress (2)"
