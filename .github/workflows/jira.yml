@@ -26,3 +26,26 @@ jobs:
       with:
         issue: ${{ steps.find_issue.outputs.issue }}
         transition: $TRANSITION_NAME
+  move_task_to_review:
+    name: Move task to review
+    if: ${{ contains(github.event.label.name, 'review') && contains(github.head_ref, '/FR-') }}
+    env:
+      TRANSITION_NAME: "Review"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login to Jira
+      uses: atlassian/gajira-login@master
+      env:
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+    - name: Find issue number in branch name
+      id: find_issue
+      uses: cybervoid/gajira-get-issue@v1.0
+      with:
+        input-text: ${{ github.head_ref }}
+    - name: Transition issue
+      uses: atlassian/gajira-transition@master
+      with:
+        issue: ${{ steps.find_issue.outputs.issue }}
+        transition: $TRANSITION_NAME
