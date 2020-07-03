@@ -1,4 +1,4 @@
-name: Add Labels1
+name: Add Labels
 on: pull_request_review
 
 jobs:
