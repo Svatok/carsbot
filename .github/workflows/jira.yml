@@ -1,37 +1,28 @@
-name: Transition jira issue to 'in progress'
+name: Move task after labeling
 on:
   pull_request:
     types: [labeled]
 
 jobs:
-  move_task:
-    if: ${{ contains(github.event.label.name, 'in progress') }}
+  move_task_to_progress:
+    if: ${{ contains(github.event.label.name, 'progress') && contains(github.head_ref, '/FR-') }}
+    env:
+      TRANSITION_NAME: "In Progress (2)"
     runs-on: ubuntu-latest
     steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-    - name: Login
+    - name: Login to Jira
       uses: atlassian/gajira-login@master
       env:
         JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
         JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-
-#     - name: Find in commit messages
-#       id: find_issue
-#       uses: atlassian/gajira-find-issue-key@master
-#       with:
-#         from: branch
-    - name: Find in branch name
+    - name: Find issue number in branch name
       id: find_issue
       uses: cybervoid/gajira-get-issue@v1.0
       with:
         input-text: ${{ github.head_ref }}
-
     - name: Transition issue
       uses: atlassian/gajira-transition@master
       with:
         issue: ${{ steps.find_issue.outputs.issue }}
-        transition: "In Progress (2)"
+        transition: $TRANSITION_NAME
