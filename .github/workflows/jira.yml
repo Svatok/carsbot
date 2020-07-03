@@ -1,10 +1,11 @@
+name: Move Jira issue
 on:
   pull_request:
     types: [labeled]
 
 jobs:
   move_task_to_progress:
-    name: Move task to progress
+    name: to progress
     if: ${{ contains(github.event.label.name, 'progress') && contains(github.head_ref, '/FR-') }}
     env:
       TRANSITION_NAME: "In Progress (2)"
@@ -27,7 +28,7 @@ jobs:
         issue: ${{ steps.find_issue.outputs.issue }}
         transition: $TRANSITION_NAME
   move_task_to_review:
-    name: Move task to review
+    name: to review
     if: ${{ contains(github.event.label.name, 'review') && contains(github.head_ref, '/FR-') }}
     env:
       TRANSITION_NAME: "Review"
