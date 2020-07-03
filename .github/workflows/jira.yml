@@ -52,7 +52,7 @@ jobs:
         transition: ${{ env.TRANSITION_NAME }}
   move_task_to_deploy:
     name: to deploy
-    if: ${{ github.event.action == 'closed' && github.event.pull_request.merged == true && contains(github.head_ref, '/FR-' }}
+    if: ${{ github.event.action == 'closed' && github.event.pull_request.merged == true && contains(github.head_ref, '/FR-') }}
     env:
       TRANSITION_NAME: "Deploy"
     runs-on: ubuntu-latest
