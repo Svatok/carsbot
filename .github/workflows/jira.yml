@@ -1,13 +1,17 @@
-name: Transition jira issue
+name: Transition jira issue to 'in progress'
 on:
   pull_request:
     types: [labeled]
 
 jobs:
-  build:
+  move_task:
+#     if:
     runs-on: ubuntu-latest
-    name: Jira Example
     steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
     - name: Login
       uses: atlassian/gajira-login@master
       env:
@@ -20,12 +24,11 @@ jobs:
 #       uses: atlassian/gajira-find-issue-key@master
 #       with:
 #         from: branch
-    - name: Find in commit messages
+    - name: Find in branch name
       id: find_issue
       uses: cybervoid/gajira-get-issue@v1.0
       with:
         input-text: ${{ github.head_ref }}
-
 
     - name: Transition issue
       uses: atlassian/gajira-transition@master
