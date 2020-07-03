@@ -5,7 +5,9 @@ on:
 
 jobs:
   move_task:
-    if: ${{ github.event.label.name == ":computer:  in progress" }}
+    env:
+      label_name: ":computer:  in progress"
+    if: ${{ github.event.label.name == label_name }}
     runs-on: ubuntu-latest
     steps:
     - name: Dump GitHub context
