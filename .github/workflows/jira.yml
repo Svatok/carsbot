@@ -26,7 +26,7 @@ jobs:
       uses: atlassian/gajira-transition@master
       with:
         issue: ${{ steps.find_issue.outputs.issue }}
-        transition: $TRANSITION_NAME
+        transition: ${{ env.TRANSITION_NAME }}
   move_task_to_review:
     name: to review
     if: ${{ github.event.action == 'labeled' && contains(github.event.label.name, 'review') && contains(github.head_ref, '/FR-') }}
@@ -49,7 +49,7 @@ jobs:
       uses: atlassian/gajira-transition@master
       with:
         issue: ${{ steps.find_issue.outputs.issue }}
-        transition: $TRANSITION_NAME
+        transition: ${{ env.TRANSITION_NAME }}
   move_task_to_deploy:
     name: to deploy
     if: ${{ github.event.action == 'closed' && github.event.pull_request.merged == true }}
@@ -72,4 +72,4 @@ jobs:
       uses: atlassian/gajira-transition@master
       with:
         issue: ${{ steps.find_issue.outputs.issue }}
-        transition: $TRANSITION_NAME
+        transition: ${{ env.TRANSITION_NAME }}
